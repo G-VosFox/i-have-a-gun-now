@@ -9,6 +9,7 @@ public class playerMovement : MonoBehaviour
     public float gravity = -0.005f;
     private float baseGravity;
     private bool jumped = false;
+    public float hP = 10;
 
 
     private float moveX;
@@ -51,6 +52,10 @@ public class playerMovement : MonoBehaviour
         {
             StartCoroutine(GetDown());
             jumped = false;
+        }
+        if (hP == 0)
+        {
+            Debug.Log("you are dead, not big suprise");
         }
     }
     IEnumerator GetDown()

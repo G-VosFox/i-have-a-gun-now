@@ -174,6 +174,7 @@ MonoBehaviour:
   walkSpeed: 10
   runSpeed: 15
   gravity: -0.01
+  hP: 10
   characterController: {fileID: 23457633}
 --- !u!54 &23457632
 Rigidbody:
@@ -1110,7 +1111,7 @@ Transform:
   m_GameObject: {fileID: 1661648237}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.68296695, y: 0, z: -1.0669193}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1321,7 +1322,7 @@ Transform:
   m_GameObject: {fileID: 1839907336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07358647, y: 1.5, z: 3.4496665}
+  m_LocalPosition: {x: -0.07358647, y: 1.5, z: 16.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1344,6 +1345,7 @@ MonoBehaviour:
   current: {x: 0, y: 0, z: 0}
   player: {fileID: 23457628}
   speed: 5
+  playerScript: {fileID: 23457631}
 --- !u!54 &1839907339
 Rigidbody:
   m_ObjectHideFlags: 0
