@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
@@ -20,15 +21,22 @@ public class enemyMovement : MonoBehaviour
     {
         target = new Vector3(Random.Range(-50f, 50f), 1.5f, Random.Range(-50f, 50f));
         playerScript = GameObject.FindObjectOfType(typeof(playerMovement)) as playerMovement;
+        player = playerScript.gameObject;
     }
     // Update is called once per frame
     void Update()
     {
+        NavMesh.CalculatePath(current, target);
         current = gameObject.transform.position;
         var step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target, step);
 
         float dist = Vector3.Distance(player.transform.position, transform.position);
+
+        if (current == Vector3.zero)
+        {
+            target = new Vector3(Random.Range(-50f, 50f), 1.5f, Random.Range(-50f, 50f));
+        }
 
         if (dist <= 10)
         {

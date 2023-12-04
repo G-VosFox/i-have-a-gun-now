@@ -6,7 +6,7 @@ public class playerMovement : MonoBehaviour
     private float currentSpeed;
     public float walkSpeed = 10f;
     public float runSpeed = 15f;
-    public float gravity = -0.005f;
+    public float gravity = -1f;
     private float baseGravity;
     private bool jumped = false;
     public float hP = 10;
@@ -21,7 +21,7 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         currentSpeed = walkSpeed;
-        baseGravity = gravity;
+        baseGravity = gravity * Time.fixedDeltaTime;
     }
     // Update is called once per frame
     void Update()
@@ -44,8 +44,7 @@ public class playerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
         {
-            Debug.Log("jump");
-            baseGravity = -gravity;
+            baseGravity = 0.7f * Time.fixedDeltaTime;
             jumped = true;
         }
         if (!characterController.isGrounded && jumped == true) 
@@ -60,7 +59,13 @@ public class playerMovement : MonoBehaviour
     }
     IEnumerator GetDown()
     {
-        yield return new WaitForSeconds(0.4f);
-        baseGravity = gravity;
+        yield return new WaitForSeconds(0.2f);
+        baseGravity = 0.5f * Time.fixedDeltaTime;
+        yield return new WaitForSeconds(0.05f);
+        baseGravity = 0.1f * Time.fixedDeltaTime;
+        yield return new WaitForSeconds(0.05f);
+        baseGravity = -0.7f * Time.fixedDeltaTime;
+        yield return new WaitForSeconds(0.05f);
+        baseGravity = gravity * Time.fixedDeltaTime;
     }
 }
