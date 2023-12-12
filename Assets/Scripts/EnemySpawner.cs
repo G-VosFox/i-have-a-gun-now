@@ -26,6 +26,6 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator anotherOne()
     {
         yield return new WaitForSeconds(10f);
-        Instantiate(enemyPrefab, new Vector3(Random.Range(-50f, 50f), 1, 49), Quaternion.identity);
+        Instantiate(enemyPrefab, new Vector3(Random.Range(-50f, 50f), transform.position.y, 49), Quaternion.identity);
     }
 }
