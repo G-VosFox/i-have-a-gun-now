@@ -6,7 +6,7 @@ public class playerMovement : MonoBehaviour
     private float currentSpeed;
     public float walkSpeed = 10f;
     public float runSpeed = 15f;
-    public float gravity = -5f;
+    public float gravity = -10f;
     private float baseGravity;
     private bool jumped = false;
 
@@ -25,12 +25,6 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveX = Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime;
-        moveZ = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
-        move = transform.right * moveX +
-               transform.up * baseGravity +
-               transform.forward * moveZ;
-        characterController.Move(move);
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -41,12 +35,22 @@ public class playerMovement : MonoBehaviour
             currentSpeed = walkSpeed;
         }
 
+    }
+    private void FixedUpdate()
+    {
+        moveX = Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime;
+        moveZ = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
+        move = transform.right * moveX +
+               transform.up * baseGravity +
+               transform.forward * moveZ;
+        characterController.Move(move);
+
         if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
         {
             baseGravity = -gravity * Time.fixedDeltaTime;
             jumped = true;
         }
-        if (!characterController.isGrounded && jumped == true) 
+        if (!characterController.isGrounded && jumped == true)
         {
             StartCoroutine(GetDown());
             jumped = false;

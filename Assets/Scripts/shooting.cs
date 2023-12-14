@@ -7,6 +7,8 @@ public class shooting : MonoBehaviour
     private Ray ray;
     RaycastHit hit;
     public Camera cam;
+    public Vector3 up;
+    public bool shot = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +23,20 @@ public class shooting : MonoBehaviour
             ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag.Equals("NPC"))
+                if (hit.collider.tag.Equals("NPC") && shot == false)
                 {
-                    Destroy(hit.collider.gameObject);
+                    shot = true;
+                    up = new Vector3(transform.position.x, 10f, transform.position.z);
+                    Debug.Log("should work");
+                    StartCoroutine(noBlasting());
                 }
             }
         }
+    }
+    IEnumerator noBlasting()
+    {
+        hit.rigidbody.AddForce(up, ForceMode.Impulse);
+        yield return new WaitForSeconds(1f);
+        shot = false;
     }
 }

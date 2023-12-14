@@ -19,6 +19,9 @@ public class camRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+    private void FixedUpdate()
+    {
         xMouse = Input.GetAxis("Mouse X") * speed * Time.deltaTime;
         yMouse = Input.GetAxis("Mouse Y") * speed * Time.deltaTime;
         xRotation -= yMouse;
