@@ -27,7 +27,6 @@ public class shooting : MonoBehaviour
                 {
                     shot = true;
                     up = new Vector3(transform.position.x, 10f, transform.position.z);
-                    Debug.Log("should work");
                     StartCoroutine(noBlasting());
                 }
             }
@@ -36,7 +35,7 @@ public class shooting : MonoBehaviour
     IEnumerator noBlasting()
     {
         hit.rigidbody.AddForce(up, ForceMode.Impulse);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         shot = false;
     }
 }
